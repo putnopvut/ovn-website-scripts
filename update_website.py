@@ -80,7 +80,7 @@ def write_release(
 
     releases = []
     for log in reversed(changelogs):
-        release_date = datetime.date.fromtimestamp(
+        release_date = datetime.datetime.fromtimestamp(
             log.end_tag.commit.committed_date
         )
         releases.append(
@@ -103,6 +103,7 @@ def write_release(
         "release_date": release_date,
         "releases": releases,
         "is_lts": is_lts,
+        "weight": 99999999999 - release_date.timestamp(),
     }
 
     with open(release_path, "w") as release_file:
