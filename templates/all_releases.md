@@ -8,10 +8,15 @@ title = "All Releases"
 +++
 
 ## Supported Releases
+The following OVN release series are still receiving upstream support.
 {%- for branch in supported_branches %}
 {{ branch_block(branch) }}
 {% endfor %}
 ## Unsupported Releases
+The following OVN release series are no longer supported. This means that they
+will not receive any future bug fixes, including critical or security fixes.
+It is not recommended to use these unless you absolutely must. Use these at
+your own risk.
 {%- for branch in unsupported_branches %}
 {{ branch_block(branch) }}
 {% endfor -%}

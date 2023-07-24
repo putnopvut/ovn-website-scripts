@@ -156,15 +156,20 @@ def write_release_index(
     env: Environment,
 ):
     most_recent_lts = None
+    most_recent_standard = None
     for branch in reversed(supported_branches):
-        if is_branch_lts(branch):
-            most_recent_lts = branch
-            break
+        if most_recent_standard is None:
+            if not is_branch_lts(branch):
+                most_recent_standard = branch
+        if most_recent_lts is None:
+            if is_branch_lts(branch):
+                most_recent_lts = branch
 
     template = env.get_template("release_index.md")
     context = {
         "most_recent": supported_branches[-1],
         "most_recent_lts": most_recent_lts,
+        "most_recent_standard": most_recent_standard,
     }
     release_index_path = RELEASE_DIR / "_index.en.md"
     with open(release_index_path, "w") as index_file:
