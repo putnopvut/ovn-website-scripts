@@ -77,7 +77,7 @@ def write_release(
     news: Dict[str, str],
     env: Environment,
 ):
-    template = env.get_template("new_release_template.md")
+    template = env.get_template("new_release_template.md.template")
 
     releases = []
     for log in reversed(changelogs):
@@ -116,7 +116,7 @@ def write_changelogs(
     changelogs: List[changelog.Changelog],
     env: Environment,
 ):
-    template = env.get_template("changelog_template.md")
+    template = env.get_template("changelog_template.md.template")
     for log in changelogs:
         context = {
             "start_tag": log.start_tag.tag,
@@ -135,7 +135,7 @@ def write_all_releases(
     unsupported_branches: List[str],
     env: Environment,
 ):
-    template = env.get_template("all_releases.md")
+    template = env.get_template("all_releases.md.template")
     context = {
         "supported_branches": supported_branches,
         "unsupported_branches": unsupported_branches,
@@ -166,7 +166,7 @@ def write_release_index(
             if is_branch_lts(branch):
                 most_recent_lts = branch
 
-    template = env.get_template("release_index.md")
+    template = env.get_template("release_index.md.template")
     context = {
         "most_recent": supported_branches[-1],
         "most_recent_lts": most_recent_lts,
