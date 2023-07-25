@@ -15,6 +15,7 @@ OVN_DIR = repo_utils.WORK_DIR / "ovn"
 WEBSITE_URL = "https://github.com/ovn-org/ovn-website"
 WEBSITE_DIR = repo_utils.WORK_DIR / "ovn-website"
 RELEASE_DIR = WEBSITE_DIR / "src/content/releases"
+MAX_TIMESTAMP = datetime.datetime.max.timestamp()
 
 SUPPORTED_BRANCHES = Path("supported_branches.txt")
 UNSUPPORTED_BRANCHES = Path("unsupported_branches.txt")
@@ -103,7 +104,7 @@ def write_release(
         "release_date": release_date,
         "releases": releases,
         "is_lts": is_lts,
-        "weight": 99999999999 - release_date.timestamp(),
+        "weight": MAX_TIMESTAMP - release_date.timestamp(),
     }
 
     with open(release_path, "w") as release_file:
