@@ -4,7 +4,7 @@
 +++
 title = "{{ branch }}"
 {%- if today >= end_date %}
-[_build]
+[build]
   list = 'never'
 {% else %}
 weight = {{ weight }}

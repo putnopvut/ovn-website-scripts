@@ -4,7 +4,7 @@
 
 +++
 title = "Changelog {{ end_tag }}"
-[_build]
+[build]
   list = 'never'
 +++
 
